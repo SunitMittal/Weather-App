@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App - Get Real-time Weather Information</title>
+  <meta name="description"
+    content="Get real-time weather information for any city or your current location. Free weather app with detailed forecasts.">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Weather App</h1>
+      <p class="subtitle">Get real-time weather information</p>
+    </header>
+
+    <nav class="tabContainer" role="tablist" aria-label="Weather search options">
+      <button class="tab" id="userWeather" role="tab" aria-selected="true" aria-controls="userWeatherPanel">Your
+        Weather</button>
+      <button class="tab" id="searchWeather" role="tab" aria-selected="false" aria-controls="searchWeatherPanel">Search
+        Weather</button>
+    </nav>
+
+    <main class="weatherContainer">
+      <!-- Grant Location Access -->
+      <section class="grantLocationContainer subContainer" id="userWeatherPanel" role="tabpanel"
+        aria-labelledby="userWeather">
+        <img src="./images/location.png" width="80" height="80" loading="lazy" alt="Location icon" />
+        <h2>Grant Location Access</h2>
+        <p>Allow access to get weather information for your current location</p>
+        <button id="grantAccessBtn" class="btn" aria-describedby="location-description">
+          Grant Access
+        </button>
+        <p id="location-description" class="sr-only">Click to allow location access for weather information</p>
+      </section>
+
+      <!-- Location Search Bar -->
+      <section class="SearchForm" id="searchWeatherPanel" role="tabpanel" aria-labelledby="searchWeather"
+        aria-hidden="true">
+        <form role="search" aria-label="Search for city weather">
+          <input id="searchInput" type="search" placeholder="Search for City..." aria-label="Enter city name"
+            autocomplete="off" />
+          <button class="btn" type="submit" aria-label="Search weather">
+            <img src="./images/search.png" width="20" height="20" loading="lazy" alt="Search icon" />
+          </button>
+        </form>
+      </section>
+
+      <!-- Loading Screen -->
+      <section class="loadingContainer subContainer" aria-live="polite" aria-label="Loading weather information">
+        <img src="./images/loading.gif" height="150" width="150" alt="Loading animation" />
+        <p>Loading weather information...</p>
+      </section>
+
+      <!-- Display Weather Info -->
+      <section class="displayWeatherInfo subContainer" aria-live="polite">
+        <div class="weather-header">
+          <div class="LocationInfo">
+            <h2 id="LocationName" aria-label="City name"></h2>
+            <img id="LocationFlag" alt="Country flag" />
+          </div>
+
+          <div class="weather-controls">
+            <button id="unitToggle" class="btn-secondary" aria-label="Toggle temperature unit">
+              °C / °F
+            </button>
+            <button id="favoriteBtn" class="btn-secondary" aria-label="Add to favorites">
+              ❤️
+            </button>
+          </div>
+        </div>
+
+        <div class="weather-main">
+          <p id="WeatherDescription" class="weather-desc"></p>
+          <img id="WeatherIcon" alt="Weather condition icon" />
+          <p id="LocationTemprature" class="temperature"></p>
+        </div>
+
+        <div class="displayOtherInfo" role="region" aria-label="Weather details">
+          <div class="parameter">
+            <img src="./images/wind.png" alt="Wind icon" />
+            <p>Wind Speed</p>
+            <p id="WindSpeed" aria-label="Wind speed value"></p>
+          </div>
+
+          <div class="parameter">
+            <img src="./images/humidity.png" alt="Humidity icon" />
+            <p>Humidity</p>
+            <p id="Humidity" aria-label="Humidity percentage"></p>
+          </div>
+
+          <div class="parameter">
+            <img src="./images/cloud.png" alt="Cloud icon" />
+            <p>Clouds</p>
+            <p id="Clouds" aria-label="Cloud coverage percentage"></p>
+          </div>
+        </div>
+
+        <div class="weather-footer">
+          <p class="last-updated">Last updated: <span id="lastUpdated"></span></p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Favorites Section -->
+    <section class="favorites-section" aria-label="Favorite cities">
+      <h3>Favorite Cities</h3>
+      <div id="favoritesList" class="favorites-list">
+        <!-- Favorites will be populated here -->
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
